@@ -5,6 +5,7 @@ use std::str;
 pub fn connect(address: &str) -> Result<(), failure::Error>
 {
     let mut stream = TcpStream::connect(address)?;
+
     loop {
         let mut input = String::new();
         io::stdin().read_line(&mut input)?;

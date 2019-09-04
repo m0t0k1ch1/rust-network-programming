@@ -18,6 +18,7 @@ fn handler(mut stream: TcpStream) -> Result<(), failure::Error>
     debug!("Handling data from {}", stream.peer_addr()?);
 
     let mut buffer = [0u8; 1024];
+
     loop {
         let nbytes = stream.read(&mut buffer)?;
         if nbytes == 0 {
