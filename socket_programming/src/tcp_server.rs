@@ -22,7 +22,7 @@ fn handler(mut stream: TcpStream) -> Result<(), failure::Error>
     loop {
         let nbytes = stream.read(&mut buffer)?;
         if nbytes == 0 {
-            debug!("Connection closed.");
+            debug!("Connection closed");
             return Ok(());
         }
 
