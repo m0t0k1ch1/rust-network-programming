@@ -61,15 +61,9 @@ fn ipv4_handler(eth_packet: &EthernetPacket)
 {
     if let Some(packet) = Ipv4Packet::new(eth_packet.payload()) {
         match packet.get_next_level_protocol() {
-            IpNextHeaderProtocols::Tcp => {
-                tcp_handler(&packet);
-            },
-            IpNextHeaderProtocols::Udp => {
-                udp_handler(&packet);
-            },
-            _ => {
-                info!("Not a TCP or UDP packet");
-            },
+            IpNextHeaderProtocols::Tcp => tcp_handler(&packet),
+            IpNextHeaderProtocols::Udp => udp_handler(&packet),
+            _                          => info!("Not a TCP or UDP packet"),
         }
     }
 }
@@ -78,15 +72,9 @@ fn ipv6_handler(eth_packet: &EthernetPacket)
 {
     if let Some(packet) = Ipv6Packet::new(eth_packet.payload()) {
         match packet.get_next_header() {
-            IpNextHeaderProtocols::Tcp => {
-                tcp_handler(&packet);
-            },
-            IpNextHeaderProtocols::Udp => {
-                udp_handler(&packet);
-            },
-            _ => {
-                info!("Not a TCP or UDP packet");
-            },
+            IpNextHeaderProtocols::Tcp => tcp_handler(&packet),
+            IpNextHeaderProtocols::Udp => udp_handler(&packet),
+            _                          => info!("Not a TCP or UDP packet"),
         }
     }
 }
